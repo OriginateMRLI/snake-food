@@ -30,6 +30,52 @@
 
 <body>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <!-- 在canvas元素后添加 -->
+    <div id="controls">
+        <div class="d-pad">
+            <button class="arrow up" data-direction="up">↑</button>
+            <button class="arrow down" data-direction="down">↓</button>
+            <button class="arrow left" data-direction="left">←</button>
+            <button class="arrow right" data-direction="right">→</button>
+        </div>
+    </div>
+    
+    <style>
+        #controls {
+            position: fixed;
+            bottom: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .d-pad {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+        
+        .arrow {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 2px solid white;
+            background: rgba(255,255,255,0.3);
+            color: white;
+            font-size: 24px;
+            touch-action: manipulation;
+        }
+        
+        .up { top: 0; left: 50%; transform: translateX(-50%); }
+        .down { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .left { top: 50%; left: 0; transform: translateY(-50%); }
+        .right { top: 50%; right: 0; transform: translateY(-50%); }
+        
+        @media (max-width: 600px) {
+            .d-pad { width: 120px; height: 120px; }
+            .arrow { width: 40px; height: 40px; font-size: 20px; }
+        }
+    </style>
     <script src="script.js"></script>
 </body>
 

@@ -82,35 +82,40 @@ window.addEventListener('keydown', e => {
     }
 });
 
-// 添加触摸事件处理
-let touchStartX = 0;
-let touchStartY = 0;
+// 删除原有的触摸事件处理代码（约30行），替换为：
 
-// 修改触摸事件绑定对象为canvas
-canvas.addEventListener('touchstart', e => {
-    console.log('触摸开始', e.touches[0]);
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-    e.preventDefault();
-}, { passive: false });
+// 虚拟方向键控制
+document.querySelectorAll('.arrow').forEach(btn => {
+    // 处理触摸开始事件
+    btn.addEventListener('touchstart', e => {
+        e.preventDefault();
+        const dir = btn.dataset.direction;
+        handleDirection(dir);
+    });
 
-canvas.addEventListener('touchmove', e => {
-    console.log('触摸移动', deltaX, deltaY);
-    const touch = e.touches[0];
-    // 添加视口偏移计算
-    const deltaX = touch.clientX - touchStartX;
-    const deltaY = touch.clientY - touchStartY;
-    e.preventDefault();
+    // 处理鼠标点击（桌面端测试）
+    btn.addEventListener('mousedown', e => {
+        const dir = btn.dataset.direction;
+        handleDirection(dir);
+    });
+});
 
-    // 判断滑动方向（阈值设置为30像素防止误触）
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
-        direction.x = deltaX > 0 ? 1 : -1;
-        direction.y = 0;
-    } else if (Math.abs(deltaY) > 30) {
-        direction.x = 0;
-        direction.y = deltaY > 0 ? 1 : -1;
+function handleDirection(dir) {
+    switch(dir) {
+        case 'up':
+            if (direction.y === 0) direction = { x: 0, y: -1 };
+            break;
+        case 'down':
+            if (direction.y === 0) direction = { x: 0, y: 1 };
+            break;
+        case 'left':
+            if (direction.x === 0) direction = { x: -1, y: 0 };
+            break;
+        case 'right':
+            if (direction.x === 0) direction = { x: 1, y: 0 };
+            break;
     }
-}, { passive: false });
+}
 
 // 新增触摸结束事件处理
 canvas.addEventListener('touchend', e => {
