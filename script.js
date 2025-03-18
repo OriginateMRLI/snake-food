@@ -82,6 +82,32 @@ window.addEventListener('keydown', e => {
     }
 });
 
+// 添加触摸事件处理
+let touchStartX = 0;
+let touchStartY = 0;
+
+window.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    e.preventDefault();
+}, { passive: false });
+
+window.addEventListener('touchmove', e => {
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+    e.preventDefault();
+
+    // 判断滑动方向（阈值设置为30像素防止误触）
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
+        direction.x = deltaX > 0 ? 1 : -1;
+        direction.y = 0;
+    } else if (Math.abs(deltaY) > 30) {
+        direction.x = 0;
+        direction.y = deltaY > 0 ? 1 : -1;
+    }
+}, { passive: false });
+
 // 游戏主循环
 function gameLoop() {
     updateGame();
