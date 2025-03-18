@@ -108,6 +108,16 @@ window.addEventListener('touchmove', e => {
     }
 }, { passive: false });
 
+// 新增：处理触摸取消事件
+window.addEventListener('touchcancel', e => {
+    touchStartX = 0;
+    touchStartY = 0;
+});
+
+// 新增：完全禁用页面滚动
+document.body.style.overflow = 'hidden';
+document.documentElement.style.overflow = 'hidden';
+
 // 游戏主循环
 function gameLoop() {
     updateGame();

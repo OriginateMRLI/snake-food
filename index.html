@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>贪吃蛇游戏</title>
     <style>
         body {
@@ -12,15 +13,24 @@
             height: 100vh;
             margin: 0;
             background-color: #333;
+            touch-action: none;
+            /* 禁用浏览器默认触摸行为 */
+            overscroll-behavior: contain;
+            /* 阻止下拉刷新 */
         }
+
         canvas {
             border: 2px solid #fff;
             background-color: #000;
+            touch-action: none;
+            /* 确保canvas不响应默认触摸 */
         }
     </style>
 </head>
+
 <body>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
     <script src="script.js"></script>
 </body>
+
 </html>
