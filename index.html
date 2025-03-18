@@ -79,11 +79,69 @@
             position: absolute;
             width: 50px;
             height: 50px;
-            border: 2px solid white;
-            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            /* 添加圆角 */
+            background: rgba(255, 255, 255, 0.15);
             color: white;
             font-size: 24px;
             touch-action: manipulation;
+            transition: all 0.1s ease;
+            /* 添加过渡效果 */
+            backdrop-filter: blur(5px);
+            /* 毛玻璃效果 */
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            /* 添加投影 */
+        }
+
+        /* 添加按钮交互状态 */
+        .arrow:active {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0.95);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (hover: hover) {
+            .arrow:hover {
+                background: rgba(255, 255, 255, 0.25);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .arrow {
+                width: 44px;
+                height: 44px;
+                /* 略微减小尺寸 */
+                font-size: 22px;
+                border-radius: 8px;
+                /* 调整圆角 */
+            }
+
+            /* 添加按钮间距 */
+            .left {
+                left: 5px;
+            }
+
+            .right {
+                right: 5px;
+            }
+
+            .up {
+                top: 5px;
+            }
+
+            .down {
+                bottom: 5px;
+            }
+        }
+
+        /* 横屏优化 */
+        @media (orientation: landscape) {
+            .arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
         }
 
         .up {
