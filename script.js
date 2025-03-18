@@ -86,14 +86,18 @@ window.addEventListener('keydown', e => {
 let touchStartX = 0;
 let touchStartY = 0;
 
-window.addEventListener('touchstart', e => {
+// 修改触摸事件绑定对象为canvas
+canvas.addEventListener('touchstart', e => {
+    console.log('触摸开始', e.touches[0]);
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     e.preventDefault();
 }, { passive: false });
 
-window.addEventListener('touchmove', e => {
+canvas.addEventListener('touchmove', e => {
+    console.log('触摸移动', deltaX, deltaY);
     const touch = e.touches[0];
+    // 添加视口偏移计算
     const deltaX = touch.clientX - touchStartX;
     const deltaY = touch.clientY - touchStartY;
     e.preventDefault();
@@ -108,8 +112,8 @@ window.addEventListener('touchmove', e => {
     }
 }, { passive: false });
 
-// 新增：处理触摸取消事件
-window.addEventListener('touchcancel', e => {
+// 新增触摸结束事件处理
+canvas.addEventListener('touchend', e => {
     touchStartX = 0;
     touchStartY = 0;
 });
