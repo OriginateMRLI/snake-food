@@ -9,26 +9,10 @@ let food = { x: 0, y: 0 };
 let score = 0;
 
 // 生成食物位置
-// 在初始化游戏变量后添加视口适配
-function initGameSize() {
-    const minSize = Math.min(window.innerWidth, window.innerHeight * 0.8);
-    canvas.width = Math.floor(minSize / 40) * 40;  // 保持40的倍数
-    canvas.height = canvas.width;  // 保持正方形
-    canvas.style.width = canvas.width + 'px';
-    canvas.style.height = canvas.height + 'px';
-}
-
-// 修改生成食物位置函数
 function generateFood() {
-    const cols = canvas.width / 10;  // 动态列数
-    const rows = canvas.height / 10; // 动态行数
-    food.x = Math.floor(Math.random() * cols) * 10;
-    food.y = Math.floor(Math.random() * rows) * 10;
+    food.x = Math.floor(Math.random() * 40) * 10;
+    food.y = Math.floor(Math.random() * 40) * 10;
 }
-
-// 在初始化游戏时调用
-window.addEventListener('resize', initGameSize);
-initGameSize(); // 初始调用
 
 // 绘制游戏元素
 function drawGame() {

@@ -62,51 +62,64 @@
 
     <style>
         #controls {
-            /* 调整控制面板间距 */
-            bottom: max(20px, env(safe-area-inset-bottom));
-            gap: 10px;
-            padding: 0 10px;
+            position: fixed;
+            bottom: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
-    
+
         .d-pad {
-            /* 缩小控制面板尺寸 */
-            width: 130px;
-            height: 130px;
+            position: relative;
+            width: 150px;
+            height: 150px;
         }
-    
+
         .arrow {
-            /* 优化按钮触控区域 */
-            width: 45px;
-            height: 45px;
-            border-radius: 8px;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 24px;
+            touch-action: manipulation;
         }
-    
-        @media (max-width: 480px) {
-            /* 手机端适配 */
+
+        .up {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .down {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .left {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .right {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+
+        @media (max-width: 600px) {
             .d-pad {
-                width: 110px;
-                height: 110px;
+                width: 120px;
+                height: 120px;
             }
-            
+
             .arrow {
-                width: 38px;
-                height: 38px;
-                font-size: 18px;
-            }
-            
-            #controls {
-                bottom: max(10px, env(safe-area-inset-bottom));
-            }
-        }
-    
-        @media (max-height: 600px) {
-            /* 矮屏适配 */
-            canvas {
-                max-height: 50vh;
-            }
-            
-            #controls {
-                bottom: 5px;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
             }
         }
     </style>
