@@ -62,64 +62,51 @@
 
     <style>
         #controls {
-            position: fixed;
-            bottom: 30px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
+            /* 调整控制面板间距 */
+            bottom: max(20px, env(safe-area-inset-bottom));
+            gap: 10px;
+            padding: 0 10px;
         }
-
+    
         .d-pad {
-            position: relative;
-            width: 150px;
-            height: 150px;
+            /* 缩小控制面板尺寸 */
+            width: 130px;
+            height: 130px;
         }
-
+    
         .arrow {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            border: 2px solid white;
-            background: rgba(255, 255, 255, 0.3);
-            color: white;
-            font-size: 24px;
-            touch-action: manipulation;
+            /* 优化按钮触控区域 */
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
         }
-
-        .up {
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .down {
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .left {
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-        }
-
-        .right {
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-        }
-
-        @media (max-width: 600px) {
+    
+        @media (max-width: 480px) {
+            /* 手机端适配 */
             .d-pad {
-                width: 120px;
-                height: 120px;
+                width: 110px;
+                height: 110px;
             }
-
+            
             .arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
+                width: 38px;
+                height: 38px;
+                font-size: 18px;
+            }
+            
+            #controls {
+                bottom: max(10px, env(safe-area-inset-bottom));
+            }
+        }
+    
+        @media (max-height: 600px) {
+            /* 矮屏适配 */
+            canvas {
+                max-height: 50vh;
+            }
+            
+            #controls {
+                bottom: 5px;
             }
         }
     </style>
